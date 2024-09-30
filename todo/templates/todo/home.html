@@ -1,0 +1,20 @@
+<!-- todo/templates/todo/home.html -->
+{% extends 'todo/base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <h2>Your Tasks</h2>
+    <ul>
+        {% for task in tasks %}
+            <li>
+                {{ task.title }} 
+                (<a href="{% url 'edit_task' task.id %}">Edit</a> | 
+                <a href="{% url 'delete_task' task.id %}">Delete</a> | 
+                <a href="{% url 'complete_task' task.id %}">Complete</a>)
+            </li>
+        {% empty %}
+            <p>No tasks available. Add a new task!</p>
+        {% endfor %}
+    </ul>
+{% endblock %}
